@@ -1,6 +1,7 @@
 # Shortener
  * The backend implementation of tiny URLs.
  * Provide bidirectional conversion of long URLs and short URLs.
+ * Javascript, Express, MongoDB
   
 ## Functions
  * longURL to ShortURL
