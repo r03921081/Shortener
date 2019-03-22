@@ -8,3 +8,10 @@
     * Check if the longURL is not converted, give the automatically generated shortURL and store it in MongoDB.
  * ShortURL to LongURL
     * Get the longURL corresponding to shortURL from MongoDB and redirect to longURL.
+
+## Screenshot
+   1. longURL to ShortURL
+![]()
+
+   2. ShortURL to LongURL
+![]()
