@@ -10,8 +10,8 @@
     * Get the longURL corresponding to shortURL from MongoDB and redirect to longURL.
 
 ## Screenshot
-   1. longURL to ShortURL
+     1. longURL to ShortURL
 ![](https://github.com/r03921081/Shortener/blob/master/Images/post.PNG)
 
-   2. ShortURL to LongURL
+     2. ShortURL to LongURL
 ![](https://github.com/r03921081/Shortener/blob/master/Images/get.PNG)
