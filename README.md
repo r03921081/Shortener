@@ -1,14 +1,14 @@
 # Shortener
-  * The backend implementation of tiny URLs.
-  * Provide bidirectional conversion of long URLs and short URLs.  
-  
-  * Javascript, Express, MongoDB
+     * A back-end implementation of a tiny URL that provides two-way conversion of long URLs and short URLs.  
+ 
+     * Javascript, Nodejs, Express, MongoDB
   
 ## Functions
-  * longURL to ShortURL
-    * Check if the longURL is not converted, give the automatically generated shortURL and store it in MongoDB.
-  * ShortURL to LongURL
-    * Get the longURL corresponding to shortURL from MongoDB and redirect to longURL.
+     1. longURL to ShortURL
+         * Check if the longURL is not converted, give the automatically generated shortURL and store it in MongoDB.  
+         
+     2. ShortURL to LongURL
+         * Get the longURL corresponding to shortURL from MongoDB and redirect to longURL.
 
 ## Screenshot
      1. longURL to ShortURL
