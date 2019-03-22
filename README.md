@@ -5,10 +5,10 @@
   
 ## Functions
      1. longURL to ShortURL
-         * Check if the longURL is not converted, give the automatically generated shortURL and store it in MongoDB.  
+        * Check if the longURL is not converted, give the automatically generated shortURL and store it in MongoDB.  
          
      2. ShortURL to LongURL
-         * Get the longURL corresponding to shortURL from MongoDB and redirect to longURL.
+        * Get the longURL corresponding to shortURL from MongoDB and redirect to longURL.
 
 ## Screenshot
      1. longURL to ShortURL
