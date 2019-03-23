@@ -16,3 +16,6 @@
 
      2. ShortURL to LongURL
 ![](https://github.com/r03921081/Shortener/blob/master/Images/get.PNG)
+
+     3. Result
+![](https://github.com/r03921081/Shortener/blob/master/Images/short.PNG)
