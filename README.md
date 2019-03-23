@@ -1,7 +1,7 @@
 # Shortener
-     * A back-end implementation of a tiny URL that provides two-way conversion of long URLs and short URLs.  
+     * A tiny URL service that provides two-way conversion of long URLs and short URLs.  
  
-     * Javascript, Nodejs, Express, MongoDB
+     * Bootstrap4, HTML5, CSS, jQuery, JSON, Javascript, Nodejs, Express, MongoDB
   
 ## Functions
      1. longURL to ShortURL
