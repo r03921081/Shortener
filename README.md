@@ -1,5 +1,5 @@
 # Shortener
-     * A tiny URL service that provides two-way conversion of long URLs and short URLs.  
+     * A basic tiny URL service that provides two-way conversion of long URLs and short URLs.  
  
      * Bootstrap4, HTML5, CSS, jQuery, JSON, Javascript, Nodejs, Express, MongoDB
   
