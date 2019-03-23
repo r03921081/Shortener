@@ -11,11 +11,11 @@
         * Get the longURL corresponding to shortURL from MongoDB and redirect to longURL.
 
 ## Screenshot
-     1. longURL to ShortURL
+     1. Postman: longURL to ShortURL
 ![](https://github.com/r03921081/Shortener/blob/master/Images/longToShort.PNG)
 
-     2. ShortURL to LongURL
+     2. Postman: ShortURL to LongURL
 ![](https://github.com/r03921081/Shortener/blob/master/Images/get.PNG)
 
-     3. Result
+     3. Website
 ![](https://github.com/r03921081/Shortener/blob/master/Images/short.PNG)
