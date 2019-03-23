@@ -12,7 +12,7 @@
 
 ## Screenshot
      1. longURL to ShortURL
-![](https://github.com/r03921081/Shortener/blob/master/Images/post.PNG)
+![](https://github.com/r03921081/Shortener/blob/master/Images/longToShort.PNG)
 
      2. ShortURL to LongURL
 ![](https://github.com/r03921081/Shortener/blob/master/Images/get.PNG)
