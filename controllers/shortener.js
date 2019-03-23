@@ -18,14 +18,13 @@ const Url = require('../models/url');
 
 // Look up
 exports.getShortURL = (req, res, next) => {
-    console.log(req.params.id);
     Url.findOne({ shortURL: req.params.id })
         .then(foundUrl => {
             console.log(foundUrl);
 
             if (!foundUrl) {
                 res.status(500).json({
-                    message: 'No this URL.'
+                    message: 'URL Error.'
                 });
             }
             else {
@@ -46,6 +45,7 @@ exports.postShortURL = (req, res, next) => {
     let originalURL = req.body.inputURL;
     let myShortURL = '';
     let exists = false;
+    console.log(originalURL);
 
     Url.find({ longURL: originalURL }, (err, foundUrl) => {
         if (err) {
