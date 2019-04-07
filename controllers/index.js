@@ -3,5 +3,6 @@ exports.getHomePage = (req, res) => {
     // res.status(200).json({
     //     message: 'Get home page.'
     // });
-    res.sendFile('index.html', { root: './views' });
+    // res.sendFile('index.html', { root: './views' });
+    res.render('index');
 };

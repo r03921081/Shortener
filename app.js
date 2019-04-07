@@ -13,6 +13,7 @@ mongoose.connect('mongodb://localhost:27017/shortener', { useNewUrlParser: true 
 //     mongoose.connection.db.dropDatabase();
 // });
 
+app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
