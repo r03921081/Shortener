@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 });
 
 app.use((error, req, res, next) => {
-    console.log(error);
+    console.log('error: ' + error);
     const status = error.statusCode || 500;
     const message = error.message;
     const data = error.data;
@@ -38,6 +38,6 @@ app.use((error, req, res, next) => {
 app.use(indexRoutes.routes);
 app.use(shortenerRoutes.routes);
 
-app.listen(3000, 'localhost', () => {
+app.listen(3000, () => {
     console.log('Server is running.')
 });

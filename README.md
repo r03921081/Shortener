@@ -1,7 +1,7 @@
 # Shortener
-     * A basic tiny URL service that provides two-way conversion of long URLs and short URLs.  
+     * A basic tiny URL service.  
  
-     * Bootstrap4, HTML5, CSS, jQuery, JSON, Javascript, Nodejs, Express, MongoDB
+     * Javascript, Nodejs, Express, JSON, Redis, MongoDB
   
 ## Functions
      1. longURL to ShortURL
@@ -12,10 +12,7 @@
 
 ## Screenshot
      1. Postman: longURL to ShortURL
-![](https://github.com/r03921081/Shortener/blob/master/Images/longToShort.PNG)
+![](https://github.com/r03921081/Shortener/blob/master/Images/redis_post.PNG)
 
      2. Postman: ShortURL to LongURL
-![](https://github.com/r03921081/Shortener/blob/master/Images/get.PNG)
-
-     3. Website
-![](https://github.com/r03921081/Shortener/blob/master/Images/short.PNG)
+![](https://github.com/r03921081/Shortener/blob/master/Images/redis_get.PNG)

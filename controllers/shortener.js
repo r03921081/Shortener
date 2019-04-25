@@ -1,92 +1,68 @@
 const Url = require('../models/url');
-
-// exports.getAll = (req, res, next) => {
-//     Url.find({})
-//         .then(foundUrl => {
-//             res.status(200).json({
-//                 message: 'Get the original URL.',
-//                 url: foundUrl
-//             });
-//         })
-//         .catch(err => {
-//             if (!err.statusCode) {
-//                 err.statusCode = 500;
-//             }
-//             next(err);
-//         });
-// };
+const Client = require('../redis');
 
 // Look up
 exports.getShortURL = (req, res, next) => {
-    Url.findOne({ shortURL: req.params.id })
-        .then(foundUrl => {
-            console.log(foundUrl);
+    let shortURL = req.params.id;
+    Client.get(shortURL, (err, result) => {
+        if (!err && result) {
+            res.redirect(result);
+        } else {
+            Url.findOne({
+                    shortURL: req.params.id
+                })
+                .then(foundUrl => {
+                    console.log(foundUrl);
 
-            if (!foundUrl) {
-                res.status(500).json({
-                    message: 'URL Error.'
+                    if (!foundUrl) {
+                        res.status(500).json({
+                            message: 'URL Error.'
+                        });
+                    } else {
+                        res.redirect(foundUrl.longURL);
+                    }
+
+                })
+                .catch(err => {
+                    if (!err.statusCode) {
+                        err.statusCode = 500;
+                    }
+                    next(err);
                 });
-            }
-            else {
-                res.redirect(foundUrl.longURL);
-            }
-
-        })
-        .catch(err => {
-            if (!err.statusCode) {
-                err.statusCode = 500;
-            }
-            next(err);
-        });
+        }
+    });
 };
 
 // Insert
 exports.postShortURL = (req, res, next) => {
-    let originalURL = req.body.inputURL;
-    let myShortURL = '';
-    let exists = false;
-    console.log(originalURL);
 
-    Url.find({ longURL: originalURL }, (err, foundUrl) => {
+    let originalURL = req.body.inputURL;
+    let myShortURL;
+    Client.get('count', (err, c) => {
         if (err) {
             next(err);
         }
-        if (foundUrl.length > 0) {
-            return res.status(200).json({
-                message: 'Duplicated URL.',
-                shortURL: foundUrl[0].shortURL,
+        myShortURL = generateShortUrl(c);
+
+        Client.set(myShortURL, originalURL);
+
+        let newURL = {
+            shortURL: myShortURL,
+            longURL: originalURL
+        }
+
+        Url.create(newURL, (err) => {
+            if (err) {
+                res.status(500).json({
+                    message: err
+                });
+            }
+            res.status(200).json({
+                message: "Create success.",
+                shortURL: myShortURL,
                 longURL: originalURL
             });
-        }
-        else {
-            Url.countDocuments({}, (err, c) => {
-                if (err) {
-                    next(err);
-                }
-                let alreadySaved = c;
-            }).then(alreadySaved => {
-                myShortURL = generateShortUrl(alreadySaved);
-                return myShortURL;
-            }).then(myShortURL => {
-                let newURL = {
-                    shortURL: myShortURL,
-                    longURL: originalURL
-                }
-
-                Url.create(newURL, (err) => {
-                    if (err) {
-                        res.status(500).json({
-                            message: err
-                        });
-                    }
-                    res.status(200).json({
-                        message: "Create success.",
-                        shortURL: myShortURL,
-                        longURL: originalURL
-                    });
-                });
-            });
-        }
+        });
     });
 };
 
