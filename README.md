@@ -12,7 +12,7 @@
 
 ## Screenshot
      1. Postman: longURL to ShortURL
-![](https://github.com/r03921081/Shortener/blob/master/Images/redis_post.PNG)
+![](https://github.com/r03921081/Shortener/blob/master/Images/redis_post.png)
 
      2. Postman: ShortURL to LongURL
-![](https://github.com/r03921081/Shortener/blob/master/Images/redis_get.PNG)
+![](https://github.com/r03921081/Shortener/blob/master/Images/redis_get.png)
