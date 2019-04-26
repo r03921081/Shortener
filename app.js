@@ -2,21 +2,25 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+// const Client = require('./redis');
 
 const app = express();
 
 const shortenerRoutes = require("./routes/shortener");
 
 mongoose.connect('mongodb://localhost:27017/shortener', { useNewUrlParser: true });
-// mongoose.connect('mongodb://localhost:27017/shortener', function () {
+// mongoose.connect('mongodb://localhost:27017/shortener', () => {
 //     /* Drop the DB */
 //     mongoose.connection.db.dropDatabase();
+//     Client.set('count', 0);
 // });
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
-app.use(morgan('short'));
+app.use(morgan('default'));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,7 +36,10 @@ app.use((error, req, res, next) => {
     const status = error.statusCode || 500;
     const message = error.message;
     const data = error.data;
-    res.status(status).json({ message: message, data: data });
+    res.status(status).json({
+        message: message,
+        data: data
+    });
 });
 
 app.use(shortenerRoutes.routes);
