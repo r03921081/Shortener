@@ -4,7 +4,7 @@ const Client = require('../redis');
 // Look up
 exports.getShortURL = (req, res, next) => {
     let shortURL = req.params.id;
-    Client.get(shortURL, (err, result) => {
+    Client.hget('StoL', shortURL, (err, result) => {
         if (!err && result) {
             res.redirect(result);
         } else {
@@ -34,28 +34,49 @@ exports.getShortURL = (req, res, next) => {
 // Insert
 exports.postShortURL = (req, res, next) => {
     let originalURL = req.body.inputURL;
-    Client.get('count', (err, c) => {
+
+    Client.hget('LtoS', originalURL, (err, r) => {
         if (err) {
             next(err);
         }
-        let myShortURL = generateShortUrl(c);
-        Client.set(myShortURL, originalURL);
-        let newURL = {
-            shortURL: myShortURL,
-            longURL: originalURL
-        }
-        Url.create(newURL, (err) => {
-            if (err) {
-                res.status(500).json({
-                    message: err
-                });
-            }
+
+        if (r !== null) {
             res.status(200).json({
-                message: "Create success.",
-                shortURL: myShortURL,
+                message: "Get success.",
+                shortURL: r,
                 longURL: originalURL
             });
-        });
+        } else {
+            Client.get('count', (err, c) => {
+ 
+                if (err) {
+                    next(err);
+                }
+                let myShortURL = generateShortUrl(c);
+
+                Client.hset('LtoS', originalURL, myShortURL);
+                Client.hset('StoL', myShortURL, originalURL);
+
+                let newURL = {
+                    shortURL: myShortURL,
+                    longURL: originalURL
+                }
+
+                Url.create(newURL, (err) => {
+                    if (err) {
+                        res.status(500).json({
+                            message: err
+                        });
+                    }
+                    res.status(200).json({
+                        message: "Create success.",
+                        shortURL: newURL.shortURL,
+                        longURL: newURL.longURL
+                    });
+                    Client.incr('count');
+                });
+            });
+        }
     });
 };
 
