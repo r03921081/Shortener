@@ -1,22 +1,12 @@
 const Url = require('./models/url');
-const redis = require('redis');
+const Redis = require('redis');
 
-const client = redis.createClient();
+const Client = Redis.createClient();
 
-client.on('ready', (err)=>{
-    console.log('Redis ready.');
+Client.on('ready', ()=>{
     Url.countDocuments({}, (err, c) => {
-        if (err) {
-            next(err);
-        }
-        console.log('redis ', c);
-        client.set('count', c);
-    })
-    .then(() => {
-    	client.get('count', (err, r) => {
-	    	console.log('count: ' + r);
-	    });
+        Client.set('count', c);
     });
 });
 
-module.exports = client;
+module.exports = Client;

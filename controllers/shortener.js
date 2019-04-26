@@ -12,8 +12,6 @@ exports.getShortURL = (req, res, next) => {
                     shortURL: req.params.id
                 })
                 .then(foundUrl => {
-                    console.log(foundUrl);
-
                     if (!foundUrl) {
                         res.status(500).json({
                             message: 'URL Error.'
@@ -35,22 +33,17 @@ exports.getShortURL = (req, res, next) => {
 
 // Insert
 exports.postShortURL = (req, res, next) => {
-
     let originalURL = req.body.inputURL;
-    let myShortURL;
     Client.get('count', (err, c) => {
         if (err) {
             next(err);
         }
-        myShortURL = generateShortUrl(c);
-
+        let myShortURL = generateShortUrl(c);
         Client.set(myShortURL, originalURL);
-
         let newURL = {
             shortURL: myShortURL,
             longURL: originalURL
         }
-
         Url.create(newURL, (err) => {
             if (err) {
                 res.status(500).json({
