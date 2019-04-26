@@ -4,7 +4,6 @@ const Redis = require('redis');
 const Client = Redis.createClient();
 
 Client.on('ready', ()=>{
-	Client.flushall();
     Url.countDocuments({}, (err, c) => {
         Client.set('count', c);
     });
